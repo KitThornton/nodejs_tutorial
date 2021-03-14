@@ -3,10 +3,47 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require("cors");
+const pool = require("./DB.js")
 
+// middleware
 const app = express();
+app.use(cors());
 app.use(express.json());
 
+// Routes //
+// POST: create a to-do entry
+app.post("/members", async (req, res) => {
+  try {
+    const { description } = req.body;
+    const newTodo = await pool.query("INSERT INTO test.todos (description) VALUES($1)", [description]);
+    res.json(newTodo);
+
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// UPDATE: update an entry
+
+// DELETE: delete an entry
+app.delete("/deleteToDo", async (req, res) => {
+  try {
+    const { todo_id } = req.body;
+    const deletedTodo = await pool.query("DELETE FROM test.todos WHERE todo_id = $1", [todo_id])
+    res.json(deletedTodo);
+    console.log("Deleted item $1 from test.todos", [todo_id])
+
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// GET: get an entry/entries
+
+
+
+// Previous setups
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
