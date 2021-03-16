@@ -55,12 +55,11 @@ app.delete("/deleteToDo/:id", async (req, res) => {
 });
 
 // GET: get an entry/entries
-app.get("/deleteToDo", async (req, res) => {
+app.get("/getTodos", async (req, res) => {
   try {
-    const { todo_id } = req.body;
-    const deletedTodo = await pool.query("DELETE FROM test.todos WHERE todo_id = $1", [todo_id])
-    res.json(deletedTodo);
-    console.log("Deleted item $1 from test.todos", [todo_id])
+    const todos = await pool.query("SELECT * FROM test.todos")
+    res.json(todos);
+    console.log("Retrieved all items from test.todos")
 
   } catch (err) {
     console.error(err.message);
