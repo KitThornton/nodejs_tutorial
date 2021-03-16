@@ -25,9 +25,37 @@ app.post("/members", async (req, res) => {
 });
 
 // UPDATE: update an entry
+app.put('/updateTodo/:id', async (req, res) => {
+      try {
+        const { id } = req.params;
+        const { description } = req.body;
+        const updatedTodo = await pool.query("UPDATE test.todos SET description = $1 WHERE todo_id = $2",
+            [description, id]);
+
+        res.json(updatedTodo);
+        console.log("updated item $1 in test.todos", [id])
+
+      } catch (err) {
+        console.error(err.message);
+      }
+});
 
 // DELETE: delete an entry
-app.delete("/deleteToDo", async (req, res) => {
+app.delete("/deleteToDo/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedTodo = await pool.query("DELETE FROM test.todos WHERE todo_id = $1", [id])
+
+    res.json(deletedTodo);
+    console.log("Deleted item $1 from test.todos", [id])
+
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// GET: get an entry/entries
+app.get("/deleteToDo", async (req, res) => {
   try {
     const { todo_id } = req.body;
     const deletedTodo = await pool.query("DELETE FROM test.todos WHERE todo_id = $1", [todo_id])
@@ -38,9 +66,6 @@ app.delete("/deleteToDo", async (req, res) => {
     console.error(err.message);
   }
 });
-
-// GET: get an entry/entries
-
 
 
 // Previous setups
