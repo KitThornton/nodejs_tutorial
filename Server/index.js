@@ -13,11 +13,13 @@ app.use(express.json());
 
 // Routes //
 // POST: create a to-do entry
-app.post("/members", async (req, res) => {
+app.post("/createTodo", async (req, res) => {
     try {
         const { description } = req.body;
         const newTodo = await pool.query("INSERT INTO test.todos (description) VALUES($1)", [description]);
         res.json(newTodo);
+
+        console.log("created new todo item \"$1\" in test.todos", [description])
 
     } catch (err) {
         console.error(err.message);
