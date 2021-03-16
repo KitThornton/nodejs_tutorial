@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../../client/src/app');
 var debug = require('debug')('nodejs-tutorial:server');
 var http = require('http');
 

@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/PostgreSQL" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Server/PostgreSQL" vcs="Git" />
   </component>
 </project>
