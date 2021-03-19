@@ -24,7 +24,7 @@ const ListTodos = () => {
 
             console.log(jsonData);
             setTodos(jsonData);
-            console.log(todos);
+            await console.log(todos);
 
         } catch (err) {
             console.error(err.message);
@@ -39,7 +39,7 @@ const ListTodos = () => {
 
     return (
         <Fragment>
-            {" "}
+            {/*{getTodos()}*/}
             <table class="table mt-5 text-center">
                 <thead>
                 <tr>
