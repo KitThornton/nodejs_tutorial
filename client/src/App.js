@@ -1,10 +1,15 @@
 import './App.css';
 import React, { Fragment } from "react"
+import InputTodo from './Components/InputTodo'
+import ListTodos from "./Components/ListTodos";
 
 function App() {
   return (
     <Fragment>
-      Hello!
+        <div className="container">
+            <InputTodo />
+            <ListTodos />
+        </div>
     </Fragment>
   );
 }
