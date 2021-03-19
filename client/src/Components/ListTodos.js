@@ -72,7 +72,7 @@ async function getTodos() {
 
         // console.log(jsonData);
 
-        this.setState({todos: jsgit statusonData});
+        this.setState({todos: jsonData});
 
         // setTodos(jsonData);
 
