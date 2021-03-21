@@ -22,9 +22,10 @@ const ListTodos = () => {
             const response = await fetch("http://localhost:4000/getTodos");
             const jsonData = await response.json();
 
-            console.log(jsonData);
+            // console.log(jsonData);
             setTodos(jsonData);
-            await console.log(todos);
+            // setState(todos: jsonData);
+            // await console.log(todos);
 
         } catch (err) {
             console.error(err.message);
@@ -33,7 +34,7 @@ const ListTodos = () => {
 
     useEffect(() => {
         getTodos();
-    }, []);
+    });
 
     // console.log(todos);
 
@@ -49,11 +50,6 @@ const ListTodos = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {/*<tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr> */}
                 {Array.from(todos).map(todo => (
                     <tr key={todo.todo_id}>
                         <td>{todo.description}</td>
@@ -70,6 +66,14 @@ const ListTodos = () => {
                         </td>
                     </tr>
                 ))}
+                <tr>
+                    <td>{todos.rowCount}</td>
+                    {/*<td>{todos[0]}</td>*/}
+                    {/*<td>{todos.rows[0].description}</td>*/}
+                    {/*<td>{todos.rows[0].todo_id}</td>*/}
+                    {/*<td>{todos.map(todo => <div>todo.todo_id</div>)}</td>*/}
+                    {/*<td>{todos[0]}</td>*/}
+                </tr>
                 </tbody>
             </table>
         </Fragment>
