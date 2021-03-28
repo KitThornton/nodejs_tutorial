@@ -23,7 +23,7 @@ const ListTodos = () => {
             const jsonData = await response.json();
 
             // console.log(jsonData);
-            setTodos(jsonData);
+            setTodos(jsonData.rows);
             // setState(todos: jsonData);
             // await console.log(todos);
 
@@ -50,6 +50,7 @@ const ListTodos = () => {
                 </tr>
                 </thead>
                 <tbody>
+                {/*{todos.map(todo => (*/}
                 {Array.from(todos).map(todo => (
                     <tr key={todo.todo_id}>
                         <td>{todo.description}</td>
