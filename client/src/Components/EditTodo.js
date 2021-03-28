@@ -7,7 +7,7 @@ const EditTodo = ({ todo }) => {
         e.preventDefault();
         try {
             const body = { description };
-            const response = await fetch(
+            await fetch(
                 `http://localhost:4000/updateTodo/${todo.todo_id}`,
                 {
                     method: "PUT",
@@ -33,9 +33,6 @@ const EditTodo = ({ todo }) => {
                 Edit
             </button>
 
-            {/*
-        id = id10
-      */}
             <div
                 class="modal"
                 id={`id${todo.todo_id}`}

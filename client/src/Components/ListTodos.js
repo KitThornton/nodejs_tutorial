@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-
 import EditTodo from "./EditTodo";
 
 const ListTodos = () => {
@@ -7,7 +6,7 @@ const ListTodos = () => {
 
     const deleteTodo = async id => {
         try {
-            const deleteTodo = await fetch(`http://localhost:4000/deleteToDo/${id}`, {
+            await fetch(`http://localhost:4000/deleteToDo/${id}`, {
                 method: "DELETE"
             });
 
@@ -22,10 +21,7 @@ const ListTodos = () => {
             const response = await fetch("http://localhost:4000/getTodos");
             const jsonData = await response.json();
 
-            // console.log(jsonData);
             setTodos(jsonData.rows);
-            // setState(todos: jsonData);
-            // await console.log(todos);
 
         } catch (err) {
             console.error(err.message);
@@ -36,11 +32,8 @@ const ListTodos = () => {
         getTodos();
     });
 
-    // console.log(todos);
-
     return (
         <Fragment>
-            {/*{getTodos()}*/}
             <table class="table mt-5 text-center">
                 <thead>
                 <tr>
@@ -50,7 +43,6 @@ const ListTodos = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {/*{todos.map(todo => (*/}
                 {Array.from(todos).map(todo => (
                     <tr key={todo.todo_id}>
                         <td>{todo.description}</td>
@@ -67,14 +59,6 @@ const ListTodos = () => {
                         </td>
                     </tr>
                 ))}
-                <tr>
-                    <td>{todos.rowCount}</td>
-                    {/*<td>{todos[0]}</td>*/}
-                    {/*<td>{todos.rows[0].description}</td>*/}
-                    {/*<td>{todos.rows[0].todo_id}</td>*/}
-                    {/*<td>{todos.map(todo => <div>todo.todo_id</div>)}</td>*/}
-                    {/*<td>{todos[0]}</td>*/}
-                </tr>
                 </tbody>
             </table>
         </Fragment>
